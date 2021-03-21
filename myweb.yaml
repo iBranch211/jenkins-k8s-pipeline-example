@@ -16,7 +16,7 @@ spec:
         app: myweb
     spec:
       containers:
-      - image: suayb/myweb:1
+      - image: suayb/myweb:latest
         imagePullPolicy: Always
         name: myweb
 

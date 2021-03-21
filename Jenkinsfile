@@ -1,8 +1,10 @@
 pipeline {
 
   environment {
-    registry = "suayb/myweb"
+    imageName = "suayb/myweb"
+    imageTag= "latest"
     dockerImage = ""
+    registryCredential = 'dockerhub-cred'
   }
 
   agent any
@@ -17,7 +19,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build imageName + ":" + imageTag
         }
       }
     }
@@ -25,7 +27,7 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
-          docker.withRegistry( "" ) {
+          docker.withRegistry( "", registryCredential ) {
             dockerImage.push()
           }
         }
