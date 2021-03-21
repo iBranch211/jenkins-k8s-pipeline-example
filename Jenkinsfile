@@ -8,10 +8,9 @@ pipeline {
   agent any
 
   stages {
-
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/susimsek/jenkins-k8s-pipeline-example.git'
+        checkout scm
       }
     }
 
